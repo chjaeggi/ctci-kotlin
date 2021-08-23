@@ -2,7 +2,25 @@ package chapter1
 
 class Chapter1 {
 
-    fun isUnique(): Boolean {
+    fun isUnique(word: String): Boolean {
+        val map = mutableMapOf<Char, Boolean>()
+        word.forEach {
+            if (map.containsKey(it)) {
+                return false
+            }
+            map[it] = true
+        }
+        return true
+    }
+
+    fun isUniqueNoAdditionalDataStructures(word: String): Boolean {
+        word.forEachIndexed { index, value ->
+            for (i in (index + 1) until word.length) {
+                if (word[i] == value) {
+                    return false
+                }
+            }
+        }
         return true
     }
 

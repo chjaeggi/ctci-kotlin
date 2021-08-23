@@ -1,5 +1,6 @@
 import chapter1.Chapter1
 
 fun main(args: Array<String>) {
-   Chapter1()
+   println(Chapter1().isUnique("abcda"))
+   println(Chapter1().isUniqueNoAdditionalDataStructures("abcda"))
 }
