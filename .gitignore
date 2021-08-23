@@ -6,4 +6,3 @@ build
 .idea
 *.iml
 .DS_Store
-*.jar
