@@ -24,4 +24,20 @@ class TestCompleteChapter1 {
         }
     }
 
+    private val permutations = listOf("abc" to "acb", "aaab" to "baaa")
+    private val nonPermutations = listOf("abc" to "ab", "" to "baaa", "" to "")
+
+    @Test
+    fun `Assert isPermutation`() {
+        permutations.forEach {
+            assertEquals(true, Chapter1().isPermutation(it.first, it.second))
+        }
+    }
+
+    @Test
+    fun `Assert isNotPermutation`() {
+        nonPermutations.forEach {
+            assertEquals(false, Chapter1().isPermutation(it.first, it.second))
+        }
+    }
 }

@@ -24,8 +24,17 @@ class Chapter1 {
         return true
     }
 
-    fun checkPermutation(): Boolean {
-        return true
+    fun isPermutation(s1: String, s2: String): Boolean {
+        if (s1 == s2) {
+            return false
+        }
+        if (s1.length != s2.length) {
+            return false
+        }
+        if (s1.isEmpty() || s2.isEmpty()) {
+            return false
+        }
+        return s1.toCharArray().sortedArray().contentEquals(s2.toCharArray().sortedArray())
     }
 
     fun urlify() {
