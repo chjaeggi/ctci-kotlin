@@ -37,8 +37,29 @@ class Chapter1 {
         return s1.toCharArray().sortedArray().contentEquals(s2.toCharArray().sortedArray())
     }
 
-    fun urlify() {
-        return
+    fun urlify(s: String, len: Int): String {
+
+        val stringToCheck = s.toCharArray()
+        var trueEnd = len - 1
+        var currentIdx = stringToCheck.size - 1
+        val nOfWhitespaces = s.substring(0..trueEnd).count { it == ' ' }
+        var replacedWhitespaces = 0
+
+        while (replacedWhitespaces < nOfWhitespaces) {
+            if (stringToCheck[trueEnd] != ' ') {
+                stringToCheck[currentIdx] = stringToCheck[trueEnd]
+                currentIdx -= 1
+            } else {
+                stringToCheck[currentIdx] = '0'
+                stringToCheck[currentIdx - 1] = '2'
+                stringToCheck[currentIdx - 2] = '%'
+                replacedWhitespaces += 1
+                currentIdx -= 3
+            }
+            trueEnd -= 1
+        }
+
+        return String(stringToCheck)
     }
 
     fun palindromePermutation(): Boolean {
