@@ -40,4 +40,17 @@ class TestCompleteChapter1 {
             assertEquals(false, Chapter1().isPermutation(it.first, it.second))
         }
     }
+
+    private val urls = listOf(
+        Triple("a b c    ", 5, "a%20b%20c"),
+        Triple("ab bc bs qwert      ", 14, "ab%20bc%20bs%20qwert"),
+        Triple("", 0, "")
+    )
+
+    @Test
+    fun `Assert urlify returns correct output`() {
+        urls.forEach {
+            assertEquals(it.third, Chapter1().urlify(it.first, it.second))
+        }
+    }
 }
