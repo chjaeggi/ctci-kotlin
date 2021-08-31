@@ -53,4 +53,16 @@ class TestCompleteChapter1 {
             assertEquals(it.third, Chapter1().urlify(it.first, it.second))
         }
     }
+
+    private val palindromes = listOf("Taco cat", "Otto & Anna")
+    private val nonPalindromes = listOf("asdfhgergs", "oottttttoi")
+    @Test
+    fun `Assert palindromes returns correct output`() {
+        palindromes.forEach {
+            assertEquals(true, Chapter1().isPalindromePermutation(it))
+        }
+        nonPalindromes.forEach {
+            assertEquals(false, Chapter1().isPalindromePermutation(it))
+        }
+    }
 }

@@ -62,7 +62,26 @@ class Chapter1 {
         return String(stringToCheck)
     }
 
-    fun palindromePermutation(): Boolean {
+    fun isPalindromePermutation(str: String): Boolean {
+        var odds = 0
+        val charFrequency: MutableMap<Char, Int> = mutableMapOf()
+        val strAsCharArray = str.lowercase().filter { !it.isWhitespace() }.toCharArray()
+
+        strAsCharArray.forEach {
+            if (charFrequency.containsKey(it) && charFrequency[it] is Int) {
+                charFrequency[it] = charFrequency[it]!!.plus(1)
+            } else {
+                charFrequency[it] = 1
+            }
+        }
+        charFrequency.forEach { (_, value) ->
+            if (value%2 == 1) {
+                odds++
+            }
+            if (odds > 1) {
+                return false
+            }
+        }
         return true
     }
 
