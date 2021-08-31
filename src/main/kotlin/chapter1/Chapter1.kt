@@ -1,5 +1,7 @@
 package chapter1
 
+import kotlin.math.abs
+
 class Chapter1 {
 
     fun isUnique(word: String): Boolean {
@@ -75,7 +77,7 @@ class Chapter1 {
             }
         }
         charFrequency.forEach { (_, value) ->
-            if (value%2 == 1) {
+            if (value % 2 == 1) {
                 odds++
             }
             if (odds > 1) {
@@ -85,8 +87,43 @@ class Chapter1 {
         return true
     }
 
-    fun oneAway(): Boolean {
-        return true
+    fun oneAway(s1: String, s2: String): Boolean {
+        val c1 = s1.toCharArray()
+        val c2 = s2.toCharArray()
+
+        if (abs(s1.length - s2.length) > 1) {
+            return false
+        }
+
+        var longerCArr = c2
+        var shorterCArr = c1
+
+        if (s1.length > s2.length) {
+            longerCArr = c1
+            shorterCArr = c2
+        }
+        val forwardIdx = searchFirstIndex(longerCArr, shorterCArr)
+        if (forwardIdx == -1) {
+            return false
+        }
+        val reversedIdx = searchFirstIndex(longerCArr.reversedArray(), shorterCArr.reversedArray())
+
+        return forwardIdx == longerCArr.lastIndex - reversedIdx
+    }
+
+    private fun searchFirstIndex(longer: CharArray, shorter: CharArray) : Int {
+        longer.forEachIndexed { i, c ->
+            try {
+                if (c == shorter[i]) {
+                    return@forEachIndexed
+                } else {
+                    return i
+                }
+            } catch (e: ArrayIndexOutOfBoundsException) {
+                return longer.lastIndex
+            }
+        }
+        return -1 // strings are the same
     }
 
     fun stringCompression(): String {

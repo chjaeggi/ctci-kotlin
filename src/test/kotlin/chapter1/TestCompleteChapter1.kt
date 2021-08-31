@@ -56,6 +56,7 @@ class TestCompleteChapter1 {
 
     private val palindromes = listOf("Taco cat", "Otto & Anna")
     private val nonPalindromes = listOf("asdfhgergs", "oottttttoi")
+
     @Test
     fun `Assert palindromes returns correct output`() {
         palindromes.forEach {
@@ -63,6 +64,20 @@ class TestCompleteChapter1 {
         }
         nonPalindromes.forEach {
             assertEquals(false, Chapter1().isPalindromePermutation(it))
+        }
+    }
+
+    private val oneAway =
+        listOf(Pair("pale", "ple"), Pair("pales", "pale"), Pair("pale", "bale"), Pair("Xpale", "pale"))
+    private val notOneAway = listOf(Pair("pale", "bake"))
+    
+    @Test
+    fun `Assert one away`() {
+        oneAway.forEach {
+            assertEquals(true, Chapter1().oneAway(it.first, it.second))
+        }
+        notOneAway.forEach {
+            assertEquals(false, Chapter1().oneAway(it.first, it.second))
         }
     }
 }
