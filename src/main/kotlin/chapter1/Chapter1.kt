@@ -126,8 +126,25 @@ class Chapter1 {
         return -1 // strings are the same
     }
 
-    fun stringCompression(): String {
-        return ""
+    fun stringCompression(str: String): String {
+        var currentCounter = 0
+        val cArr = str.toCharArray()
+        val compressedString = StringBuilder() // don't use an immutable string that needs to be copied all again w/ +=
+        var currentChar = cArr.first()
+
+        cArr.forEach {
+            if (it == currentChar) {
+                currentCounter++
+            }
+            else {
+                compressedString.append(currentChar).append(currentCounter.toString())
+                currentChar = it
+                currentCounter = 1
+            }
+        }
+        compressedString.append(currentChar).append(currentCounter.toString())
+
+        return if (compressedString.length < str.length) compressedString.toString() else str
     }
 
     fun rotateMatrix() {

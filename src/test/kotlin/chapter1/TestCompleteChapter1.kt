@@ -70,7 +70,7 @@ class TestCompleteChapter1 {
     private val oneAway =
         listOf(Pair("pale", "ple"), Pair("pales", "pale"), Pair("pale", "bale"), Pair("Xpale", "pale"))
     private val notOneAway = listOf(Pair("pale", "bake"))
-    
+
     @Test
     fun `Assert one away`() {
         oneAway.forEach {
@@ -79,5 +79,12 @@ class TestCompleteChapter1 {
         notOneAway.forEach {
             assertEquals(false, Chapter1().oneAway(it.first, it.second))
         }
+    }
+
+    @Test
+    fun `Assert string compression `() {
+        assertEquals("a2b1c5a3", Chapter1().stringCompression("aabcccccaaa"))
+        assertEquals("g3", Chapter1().stringCompression("ggg"))
+        assertEquals("abcdefgg", Chapter1().stringCompression("abcdefgg"))
     }
 }
